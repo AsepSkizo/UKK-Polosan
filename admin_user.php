@@ -2,11 +2,9 @@
 include "cekLevelAdmin.php";
 
 include "koneksi.php";
-$query = "SELECT * FROM produk";
-$jalankan = mysqli_query($koneksi, $query);
-$data = mysqli_fetch_all($jalankan, MYSQLI_ASSOC);
+$query = mysqli_query($koneksi, "SELECT * FROM user");
+$data = mysqli_fetch_all($query, MYSQLI_ASSOC);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,32 +27,28 @@ $data = mysqli_fetch_all($jalankan, MYSQLI_ASSOC);
         </tr>
     </table>
     <br>
-    <div>
-        <a href="admin_barang_tambah.php">Tambah Barang</a>
-    </div>
+    <a href="admin_user_tambah.php">Tambah User</a>
     <br>
     <table border="1">
         <tr>
             <td>No</td>
-            <td>Kode</td>
             <td>Nama</td>
-            <td>Stok</td>
-            <td>Harga</td>
+            <td>Username</td>
+            <td>Level</td>
             <td>Aksi</td>
         </tr>
-        <?php foreach ($data as $produk) : ?>
+        <?php foreach ($data as $user) : ?>
             <tr>
                 <td>1</td>
-                <td><?= $produk["kode_produk"] ?></td>
-                <td><?= $produk["nama"] ?></td>
-                <td><?= $produk["stok"] ?></td>
-                <td><?= $produk["harga"] ?></td>
+                <td><?= $user["nama"] ?></td>
+                <td><?= $user["username"] ?></td>
+                <td><?= $user["level"] ?></td>
                 <td>
-                    <a href="admin_edit_barang.php?id=<?= $produk['id_produk'] ?>">Edit</a>
-                    <a href="admin_hapus_barang.php?id=<?= $produk['id_produk'] ?>" onclick="return confirm('Apakah anda yakin ingin menghapus barang?')">Delete</a>
+                    <a href="admin_user_edit.php?id=<?= $user['id_user'] ?>">Edit</a>
+                    <a href="admin_user_delete.php?id=<?= $user['id_user'] ?>" onclick="return confirm('Apakah Anda Ingin Menghapus User?')">Delete</a>
                 </td>
             </tr>
-        <?php endforeach; ?>
+        <?php endforeach ?>
     </table>
 </body>
 

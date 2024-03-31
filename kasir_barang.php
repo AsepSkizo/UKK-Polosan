@@ -1,5 +1,5 @@
 <?php
-include "cekLevelAdmin.php";
+include "cekLevelKasir.php";
 
 include "koneksi.php";
 $query = "SELECT * FROM produk";
@@ -20,18 +20,15 @@ $data = mysqli_fetch_all($jalankan, MYSQLI_ASSOC);
 <body>
     <table>
         <tr>
-            <td><a href="admin_index.php">Home</a></td>
-            <td><a href="admin_barang.php">Stok Barang</a></td>
-            <td><a href="admin_user.php">User</a></td>
-            <td><a href="admin_laporan_stok.php">Laporan Stok</a></td>
-            <td><a href="admin_laporan_penjualan.php">Laporan Penjualan</a></td>
+            <td><a href="kasir_index.php">Home</a></td>
+            <td><a href="kasir_barang.php">Stok Barang</a></td>
+            <td><a href="kasir_pelanggan.php">Pelanggan</a></td>
+            <td><a href="kasir_penjualan.php">Penjualan</a></td>
             <td><a href="logout.php">Logout</a></td>
         </tr>
     </table>
     <br>
-    <div>
-        <a href="admin_barang_tambah.php">Tambah Barang</a>
-    </div>
+
     <br>
     <table border="1">
         <tr>
@@ -40,7 +37,7 @@ $data = mysqli_fetch_all($jalankan, MYSQLI_ASSOC);
             <td>Nama</td>
             <td>Stok</td>
             <td>Harga</td>
-            <td>Aksi</td>
+
         </tr>
         <?php foreach ($data as $produk) : ?>
             <tr>
@@ -49,10 +46,7 @@ $data = mysqli_fetch_all($jalankan, MYSQLI_ASSOC);
                 <td><?= $produk["nama"] ?></td>
                 <td><?= $produk["stok"] ?></td>
                 <td><?= $produk["harga"] ?></td>
-                <td>
-                    <a href="admin_edit_barang.php?id=<?= $produk['id_produk'] ?>">Edit</a>
-                    <a href="admin_hapus_barang.php?id=<?= $produk['id_produk'] ?>" onclick="return confirm('Apakah anda yakin ingin menghapus barang?')">Delete</a>
-                </td>
+
             </tr>
         <?php endforeach; ?>
     </table>
