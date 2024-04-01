@@ -19,7 +19,7 @@ if (isset($_POST["bayarbtn"])) {
     }
     $queryUpdate = mysqli_query($koneksi, "UPDATE penjualan SET bayar = $bayar WHERE kode_penjualan = '$kode'");
     if ($queryUpdate) {
-        header("Location: kasir_penjualan.php");
+        header("Location: kasir_penjualan_detail.php?kode=$kode");
     }
 }
 ?>
@@ -43,6 +43,7 @@ if (isset($_POST["bayarbtn"])) {
         </tr>
     </table>
     <br>
+    <button onclick="return window.print()">Cetak</button>
     <table>
         <tr>
             <td>Nama Pelanggan : <?= $dataPenjualan["nama"] ?></td>
