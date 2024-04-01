@@ -1,5 +1,12 @@
 <?php
 session_start();
+if (isset($_SESSION["level"])) {
+    if ($_SESSION["level"] == "admin") {
+        header("Location: admin_index.php");
+    } else {
+        header("Location: kasir_index.php");
+    }
+}
 function koneksi()
 {
     $host = 'localhost';
@@ -32,6 +39,7 @@ if (isset($_POST["login"])) {
             header("Location: admin_index.php");
         } else {
             $_SESSION['level'] = "kasir";
+            $_SESSION["user"] = $user["id_user"];
             header("Location: kasir_index.php");
         }
     } else {
